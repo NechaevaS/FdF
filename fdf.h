@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/10 14:23:09 by snechaev          #+#    #+#             */
-/*   Updated: 2019/05/10 19:57:16 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/05/10 20:24:36 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ typedef struct
 {
 	int				w;
 	int				h;
+	int				z;
 }					t_size;
 #endif
