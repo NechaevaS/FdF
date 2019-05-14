@@ -74,6 +74,7 @@ OBJS = ft_memset.o\
 		ft_cnt_words.o\
 		ft_find.o\
 		ft_skip.o\
+		get_next_line.o\
 
 CFLAGS = -Wall -Wextra -Werror
 

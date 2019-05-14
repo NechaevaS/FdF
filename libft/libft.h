@@ -15,6 +15,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
+# include "get_next_line.h"
 
 typedef struct		s_list
 {
@@ -87,5 +88,6 @@ int					ft_skipws(char *str);
 int					ft_cnt_words(char const *s, char c);
 char				*ft_find(char *str, int (*f)(int n));
 char				*ft_skip(char *str, int (*f)(int n));
+int				get_next_line(const int fd, char **line);
 
 #endif

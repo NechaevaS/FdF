@@ -12,8 +12,8 @@
 
 NAME = fdf
 OBJS = main.o\
+       		read_file.o\
 		libft/libft.a\
-		minilibx_macos/libmlx.a\
 
 CFLAGS = -Wall -Wextra -Werror
 
@@ -26,16 +26,13 @@ $(OBJS) : fdf.h
 
 lib:
 	@make -C libft
-	@make -C libmlx
 
 clean :
 	rm -f $(OBJS)
 	@make -C libft/ clean
-	@make -C libmlx/ clean
 
 fclean : clean
 	rm -f $(NAME)
 	@make -C libft/ fclean
-	@make -C libmlx/ fclean
 
 re: fclean all
