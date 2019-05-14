@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read.c                                             :+:      :+:    :+:   */
+/*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/10 13:05:49 by snechaev          #+#    #+#             */
-/*   Updated: 2019/05/10 20:18:23 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/05/14 15:07:20 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	convert_to_int(t_list *res, int **int_arr, t_size map)
 	int		i;
 	int		j;
 	int		k;
-	char	tmp[256];
+	char	tmp[12];
 	char	*str;
 
 	j = 0;
@@ -77,13 +77,15 @@ void	convert_to_int(t_list *res, int **int_arr, t_size map)
 				count_size_line(res, map);
 				int_arr[j] = (int *)malloc(sizeof(int) * map.w);
 				i = 0;
+				ft_memset(tmp, 0, 12);
 				while(!ft_iswsps(*str) && *str != '\0')
 				{
 					tmp[i] = *str;
 					i++;
 					str++;
 				}
-				tmp[i] = '\0';
+				if (*str == '\0')
+					break;
 				int_arr[j][k] = ft_atoi(tmp);
 				k++;
 			}
@@ -94,7 +96,7 @@ void	convert_to_int(t_list *res, int **int_arr, t_size map)
 	}
 }
 
-int	**read_file(t_size map)
+int	**read_file(t_size map, const int fd)
 {
 	int		i;
 	int		n;
@@ -103,16 +105,16 @@ int	**read_file(t_size map)
 	char	*line;
 
 	i = 0;
-	while (get_next_line(0, &line) > 0)
+	while (get_next_line(fd, &line) == 1)
 	{
-		printf("i %d\n", i);
+
 		n = ft_strlen(line);
 		res = to_list(res, line, n, i);
 		ft_strdel(&line);
 		i++;
 	}
-	map.h = i;
-	int_arr = (int **)malloc(sizeof(int*) * i);
+	map.h = i + 1;
+	int_arr = (int **)malloc(sizeof(int*) * map.h);
 	convert_to_int(res, int_arr, map);
 	return (int_arr);
 }
