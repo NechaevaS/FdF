@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/10 13:05:49 by snechaev          #+#    #+#             */
-/*   Updated: 2019/05/14 15:07:20 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/05/20 17:06:28 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,11 @@ t_list		*to_list(t_list *res,char *str, int n, int count)
 void		count_size_line(t_list *res, t_size map)
 {
 	int		i;
+	int		count;
 	char	*str;
 
 	i = 0;
+	count = 0;
 	map.w = 0;
 	str = res->content;
 	while(str[i] != '\0')
@@ -48,14 +50,19 @@ void		count_size_line(t_list *res, t_size map)
 		if (!ft_iswsps(str[i]))
 		{
 			map.w++;
-			while(!ft_iswsps(str[i]) && str[i] != '\0')
+			if(!ft_iswsps(str[i]))
 			{
-				i++;
+				while(!ft_iswsps(str[i]) && str[i] != '\0')
+				{
+					i++;
+				}
+				count++;
 			}
 		}
 		i++;
 	}
-
+	map.w = count;
+printf("map.w %d\n", map.w);
 }
 void	convert_to_int(t_list *res, int **int_arr, t_size map)
 {
@@ -69,24 +76,29 @@ void	convert_to_int(t_list *res, int **int_arr, t_size map)
 	while(res)
 	{
 		str = res->content;
+//			printf("%s\n", str);
+//			printf("%d\n", j);
 		k = 0;
+		count_size_line(res, map);
+		int_arr[j] = (int *)malloc(sizeof(int) * map.w);
 		while(*str)
 		{
 			if (!ft_iswsps(*str))
 			{
-				count_size_line(res, map);
-				int_arr[j] = (int *)malloc(sizeof(int) * map.w);
 				i = 0;
-				ft_memset(tmp, 0, 12);
 				while(!ft_iswsps(*str) && *str != '\0')
 				{
+//					printf("i = %d\n", i);
 					tmp[i] = *str;
 					i++;
 					str++;
 				}
 				if (*str == '\0')
 					break;
+				tmp[i] = '\0';
+					printf("tmp %s\n", tmp);
 				int_arr[j][k] = ft_atoi(tmp);
+//					printf("%d", int_arr[j][k]);
 				k++;
 			}
 			str++;
@@ -107,7 +119,6 @@ int	**read_file(t_size map, const int fd)
 	i = 0;
 	while (get_next_line(fd, &line) == 1)
 	{
-
 		n = ft_strlen(line);
 		res = to_list(res, line, n, i);
 		ft_strdel(&line);
