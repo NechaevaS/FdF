@@ -6,7 +6,7 @@
 #    By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/07 14:47:44 by snechaev          #+#    #+#              #
-#    Updated: 2019/05/14 15:07:31 by snechaev         ###   ########.fr        #
+#    Updated: 2019/05/22 18:49:43 by snechaev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,8 @@ NAME = fdf
 OBJS = main.o\
        		read_file.o\
 		libft/libft.a\
+
+
 
 CFLAGS = -Wall -Wextra -Werror
 
@@ -27,12 +29,15 @@ $(OBJS) : fdf.h
 lib:
 	@make -C libft
 
+
 clean :
 	rm -f $(OBJS)
 	@make -C libft/ clean
 
+
 fclean : clean
 	rm -f $(NAME)
 	@make -C libft/ fclean
+
 
 re: fclean all
