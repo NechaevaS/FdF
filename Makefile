@@ -6,38 +6,44 @@
 #    By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/07 14:47:44 by snechaev          #+#    #+#              #
-#    Updated: 2019/05/22 18:49:43 by snechaev         ###   ########.fr        #
+#    Updated: 2019/05/23 16:24:57 by snechaev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
+
+SRC = main.c\
+       		read_file.c\
+			create_line.c
+
 OBJS = main.o\
        		read_file.o\
-		libft/libft.a\
+			create_line.o
 
-
+MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
 
 CFLAGS = -Wall -Wextra -Werror
+
 
 all : $(NAME)
 
 $(NAME) : $(OBJS) lib
-	gcc -o $(NAME) $(OBJS)
+	gcc $(CFLAGS) -I fdf.h libft/libft.a -L ./minilibx_macos $(MLXFLAGS) $(SRC) -o $(NAME)
 
 $(OBJS) : fdf.h
 
 lib:
 	@make -C libft
-
+	@make -C minilibx_macos
 
 clean :
 	rm -f $(OBJS)
 	@make -C libft/ clean
-
+	@make -C minilibx_macos/ clean
 
 fclean : clean
 	rm -f $(NAME)
 	@make -C libft/ fclean
-
+	@make -C minilibx_macos/ fclean
 
 re: fclean all

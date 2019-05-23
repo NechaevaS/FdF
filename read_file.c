@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/10 13:05:49 by snechaev          #+#    #+#             */
-/*   Updated: 2019/05/22 18:50:53 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/05/23 11:08:21 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ t_list		*to_list(t_list *res, char *str, int count)
 	t_list	*current;
 	t_list	*elem;
 	int		n;
-
 
 	n = ft_strlen(str) + 1;
 	str[n - 1] = '\0';
@@ -51,12 +50,11 @@ void		count_size_line(t_list *res, t_size *map)
 	count = 0;
 	map->w = 0;
 	str = res->content;
-//	printf("%s\n", str);
-	while(str[i] != '\0')
+	while (str[i] != '\0')
 	{
-		if(!ft_iswsps(str[i]))
+		if (!ft_iswsps(str[i]))
 		{
-			while(!ft_iswsps(str[i]) && str[i] != '\0')
+			while (!ft_iswsps(str[i]) && str[i] != '\0')
 			{
 				i++;
 			}
@@ -66,7 +64,8 @@ void		count_size_line(t_list *res, t_size *map)
 		i++;
 	}
 }
-void	convert_to_int(t_list *res, int **int_arr, t_size *map)
+
+void		convert_to_int(t_list *res, int **int_arr, t_size *map)
 {
 	int		i;
 	int		j;
@@ -75,36 +74,31 @@ void	convert_to_int(t_list *res, int **int_arr, t_size *map)
 	char	*str;
 
 	j = 0;
-	while(res)
+	while (res)
 	{
 		str = res->content;
 		k = 0;
 		count_size_line(res, map);
 
 		int_arr[j] = (int *)malloc(sizeof(int) * map->w);
-		while(*str)
+		while (*str)
 		{
 			if (!ft_iswsps(*str))
 			{
 				i = 0;
-				while(!ft_iswsps(*str) && *str != '\0')
+				while (!ft_iswsps(*str) && *str != '\0')
 				{
 					tmp[i] = *str;
 					i++;
 					str++;
 				}
-				if (*str == '\0')
-					break;
 				tmp[i] = '\0';
-//			printf("tmp = %s\n", tmp);
 				int_arr[j][k] = ft_atoi(tmp);
-//				printf("%d", int_arr[j][k]);
 				k++;
+				str--;
 			}
 			str++;
 		}
-//		printf("\n");
-	//	print_row(map, int_arr, j);
 		j++;
 		res = res->next;
 	}

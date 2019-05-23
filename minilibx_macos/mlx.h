@@ -1,9 +1,9 @@
 /*
-** mlx.h for MinilibX in 
-** 
+** mlx.h for MinilibX in
+**
 ** Made by Charlie Root
 ** Login   <ol@staff.42.fr>
-** 
+**
 ** Started on  Mon Jul 31 16:37:50 2000 Charlie Root
 ** Last update Tue Oct 01 16:23:28 2014 Olivier Crouzet
 */
@@ -45,6 +45,7 @@
 #ifndef MLX_H
 
 #define	MLX_H
+#include <OpenGL/gl.h>
 
 
 void	*mlx_init();
