@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/10 14:23:09 by snechaev          #+#    #+#             */
-/*   Updated: 2019/05/23 14:23:53 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/05/23 16:32:39 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,21 @@ typedef struct
 {
 	int			w;
 	int			h;
-	int			z;
 }				t_size;
+
+typedef struct
+{
+	int			x;
+	int			y;
+	int			z;
+}				t_point;
 
 typedef struct
 {
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
-}					colour(unsigned char r, unsigned char g, unsigned char b);
+}					colour;
 
 
 t_list			*to_list(t_list *res,char *str, int count);
