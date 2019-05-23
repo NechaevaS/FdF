@@ -42,35 +42,51 @@ void		print_map(t_size *map, int **int_arr)
 }
 
 
+// int			main(int argc, char **argv)
+// {
+// 	t_size	*map;
+// 	int		**res;
+// 	int		fd;
+
+// 	map = (t_size *)malloc(sizeof(t_size));
+
+// 	if (argc < 2)
+// 		return (ft_error("Usage: ./fdf [File]"));
+// 	else if ((fd = open(argv[1], O_RDONLY)) == -1)
+// 		return (ft_error("Could not open file"));
+// 		else
+// 		res = read_file(map, fd);
+// 	if (!res)
+// 		return (ft_error("Wrong inputs"));
+// 		printf("h %d w %d\n", map->h, map->w);
+// 	{
+// 		print_map(map, res);
+// 	}
+// 	return (0);
+// }
+
 int			main(int argc, char **argv)
 {
-
 	t_size	*map;
 	int		**res;
 	int		fd;
-//	void *mlx_ptr;
-//	void *mlx_win;
-//	char *name = "test_w";
+	void *mlx_ptr;
+	void *mlx_win;
+	char *name = "test_w";
 
 	map = (t_size *)malloc(sizeof(t_size));
 
-	if (argc < 2)
-		return (ft_error("Usage: ./fdf [File]"));
-	else if ((fd = open(argv[1], O_RDONLY)) == -1)
-		return (ft_error("Could not open file"));
-		else
-		res = read_file(map, fd);
-	if (!res)
-		return (ft_error("Wrong inputs"));
-		printf("h %d w %d\n", map->h, map->w);
+	if (argc == 2)
 	{
-		print_map(map, res);
+		if ((fd = open(argv[1], O_RDONLY)) == -1)
+			return (ft_error("Could not open file"));
+		if (!read_file(map, fd))
+			return (ft_error("Wrong inputs"));
+		mlx_ptr = mlx_init();
+		mlx_win = mlx_new_window(mlx_ptr, 512, 512, name);
+		create_line(mlx_ptr, mlx_win);
+		mlx_loop(mlx_ptr);
 	}
-
-	// mlx_ptr = mlx_init();
-	// mlx_win = mlx_new_window(mlx_ptr, 512, 512, name);
-	// res = read_file(map, fd);
-	// create_line(mlx_ptr, mlx_win);
-	// mlx_loop(mlx_ptr);
+	return (ft_error("Usage: ./fdf [File]"));
 	return (0);
 }
