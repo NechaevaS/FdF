@@ -6,49 +6,75 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 17:57:34 by snechaev          #+#    #+#             */
-/*   Updated: 2019/05/23 16:32:46 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/05/30 17:12:33 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-colour	colour_blend()
+
+t_point		**to_coord(int **arr, t_size *map)
 {
-	colour		start;
-	colour		fin;
-	colour		my_colour;
-	const int	steps = 100;
-	int			i;
+	t_point	**net;
+	int		i;
+	int		j;
 
-	start.r = 255;
-	start.g = 0;
-	start.b = 0;
-	fin.r = 0;
-	fin.g = 255;
-	fin.b = 0;
-
-	while (i <= steps)
+	j = 0;
+	net = (t_point **)malloc(sizeof(t_point) * map->h);
+	while (j < map->h)
 	{
-		my_colour.r   = start.r   + (((fin.r   - start.r)   * i) / steps);
-		my_colour.g  = start.g + (((fin.g - start.g) * i) / steps);
-		my_colour.b   = start.b  + (((fin.b  - start.b)  * i) / steps);
-		i++;
+		net[j] = (t_point *)malloc(sizeof(t_point) * map->w);
+		i = 0;
+		while (i < map->w)
+		{
+			net[j][i].posx = i;
+			net[j][i].posy = j;
+			net[j][i].z = arr[i][j];
+			net[j][i].x = i * SCALE + OFFSET;
+			net[j][i].y = j * SCALE + OFFSET;
+			i++;
+		}
+		j++;
 	}
-	return(my_colour);
+	return (net);
 }
 
-void	create_line(void *mlx_ptr, void *mlx_win, t_point pos)
+void	create_lines(void *mlx_ptr, void *mlx_win, t_point **net, t_size *map)
 {
-	int	x_st = 100;
-	int	y_st = 100;
-	int	x_fin = 400;
-	int	y_fin = 400;
-	int	color = 0xFFFFFF;
-	while (y_st <= y_fin & x_st <= x_fin)
-	{
+	int	i;
+	int	j;
+	int k;
+	int	n;
 
-		mlx_pixel_put(mlx_ptr, mlx_win, x_st, y_st, color_blend());
-		x_st++;
-		y_st++;
-		color = color - 20;
+	j = 0;
+	int	color = 0xFFFFFF;
+
+	while (j < map->h)
+	{
+		i = 0;
+		while (i < map->w)
+		{
+			k = net[j][i].x;
+			n = net[j][i].y;
+			if (i != map->w - 1)
+			{
+				while (k < net[j][i + 1].x)
+				{
+					mlx_pixel_put(mlx_ptr, mlx_win, k, n, color);
+					k++;
+				}
+			}
+			k = net[j][i].x;
+			if (j != map->h - 1)
+			{
+				while (n < net[j+1][i].y)
+				{
+					mlx_pixel_put(mlx_ptr, mlx_win, k, n, color);
+					n++;
+				}
+			}
+			i++;
+
+		}
+		j++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/10 14:23:09 by snechaev          #+#    #+#             */
-/*   Updated: 2019/05/23 16:32:39 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/05/30 16:16:33 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@
 # include "libft/libft.h"
 # include "minilibx_macos/mlx.h"
 
+# define WIN_WIDTH			512
+# define WIN_HEIGHT			512
+# define SCALE				100
+# define OFFSET				100
+
 typedef struct
 {
 	int			w;
@@ -26,17 +31,20 @@ typedef struct
 
 typedef struct
 {
+	int			posx;
+	int			posy;
+	int			z;
 	int			x;
 	int			y;
-	int			z;
+	int			scale;
 }				t_point;
 
 typedef struct
 {
-	unsigned char	r;
-	unsigned char	g;
-	unsigned char	b;
-}					colour;
+	int		red;
+	int		green;
+	int		blue;
+}				t_color;
 
 
 t_list			*to_list(t_list *res,char *str, int count);
@@ -45,6 +53,7 @@ void			convert_to_int(t_list *res, int **int_arr, t_size *map);
 int				**read_file(t_size *map, const int fd);
 void			print_map(t_size *map, int **int_arr);
 void			print_row(t_size *map, int **int_arr, int j);
-void			create_line(void *mlx_ptr, void *mlx_win);
+void			create_lines(void *mlx_ptr, void *mlx_win, t_point **net, t_size * map);
+t_point			**to_coord(int **arr, t_size *map);
 
 #endif

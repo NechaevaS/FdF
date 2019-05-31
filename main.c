@@ -73,18 +73,23 @@ int			main(int argc, char **argv)
 	void *mlx_ptr;
 	void *mlx_win;
 	char *name = "test_w";
+	t_point		**net;
 
 	map = (t_size *)malloc(sizeof(t_size));
 
 	if (argc == 2)
 	{
+		mlx_ptr = mlx_init();
+		mlx_win = mlx_new_window(mlx_ptr, WIN_WIDTH, WIN_HEIGHT, name);
 		if ((fd = open(argv[1], O_RDONLY)) == -1)
 			return (ft_error("Could not open file"));
-		if (!read_file(map, fd))
+		else
+			res = read_file(map, fd);
+		if (!res)
 			return (ft_error("Wrong inputs"));
-		mlx_ptr = mlx_init();
-		mlx_win = mlx_new_window(mlx_ptr, 512, 512, name);
-		create_line(mlx_ptr, mlx_win);
+//			print_map(map, res);
+		net = to_coord(res, map);
+		create_lines(mlx_ptr, mlx_win, net, map);
 		mlx_loop(mlx_ptr);
 	}
 	return (ft_error("Usage: ./fdf [File]"));
