@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snechaev <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 14:37:55 by snechaev          #+#    #+#             */
-/*   Updated: 2019/03/06 16:43:37 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/06/17 12:07:58 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ int					ft_skipws(char *str);
 int					ft_cnt_words(char const *s, char c);
 char				*ft_find(char *str, int (*f)(int n));
 char				*ft_skip(char *str, int (*f)(int n));
-int				get_next_line(const int fd, char **line);
+int					get_next_line(const int fd, char **line);
+int					ft_atoi_base(const char *str, int str_base);
+double				ft_abs(double x);
 
 #endif

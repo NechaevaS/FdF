@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: snechaev <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/20 11:01:28 by snechaev          #+#    #+#              #
-#    Updated: 2019/03/06 16:43:49 by snechaev         ###   ########.fr        #
+#    Updated: 2019/06/17 12:08:26 by snechaev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,9 @@ OBJS = ft_memset.o\
 		ft_cnt_words.o\
 		ft_find.o\
 		ft_skip.o\
+		ft_atoi_base.o\
 		get_next_line.o\
+		ft_abs.o\
 
 CFLAGS = -Wall -Wextra -Werror
 
