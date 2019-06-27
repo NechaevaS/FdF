@@ -55,3 +55,21 @@ int		colour_blend(t_fdf *fdf, int steps, int curr_st)
 	}
 	return (my_colour);
 }
+
+void	change_colour(t_fdf *fdf, char *str)
+{
+	int i;
+
+	i = 0;
+	while(i < fdf->map->h * fdf->map->w)
+	{
+		if (strcmp(str, "green") == 0)
+			fdf->col->point_colour[i] = "00FF00";
+		else if (strcmp(str, "red") == 0)
+			fdf->col->point_colour[i] = "FF0000";
+		else if (strcmp(str, "blue") == 0)
+			fdf->col->point_colour[i] = "0000FF";
+			else
+		i++;
+	}
+}

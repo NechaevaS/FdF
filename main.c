@@ -15,7 +15,6 @@ int		close_win(void *param)
 	exit(0);
 }
 
-
 void	all_controls(t_fdf *fdf)
 {
 	mlx_hook(fdf->win, 2, 0, key_controls, fdf);
@@ -42,38 +41,57 @@ void	print_usage(t_fdf *fdf)
 	mlx_string_put(fdf->mlx, fdf->win, 10, 425, 0xFFFFFF, "ESC");
 }
 
-int			main(int argc, char **argv)
+int			helper_main(t_fdf *fdf, t_matrix *m)
 {
 	t_matrix	*res;
-	t_matrix	*m;
+//	t_matrix	*m;
+	char		*name;
+
+	name = "FDF";
+	fdf->mlx = mlx_init();
+	fdf->win = mlx_new_window(fdf->mlx, WIN_W, WIN_H, name);
+	if (!m)
+		return (ft_error("Wrong inputs"));
+	fdf->points = m;
+	m_move(m, -(fdf->map->w / 2), 0, -(fdf->map->h / 2));
+	res = create_view(fdf); 
+	fdf->drow_points = res;
+	print_usage(fdf);
+	draw_all(fdf);
+	all_controls(fdf);
+	mlx_loop(fdf->mlx);
+	free_matrix(res);
+	
+	return (0);
+}
+
+int			main(int argc, char **argv)
+{
 	int			fd;
 	t_fdf 		*fdf;
-	
-	char *name = "FDF";
+	t_matrix	*m;
+
+	fd = 0;
 	fdf = (t_fdf *)malloc(sizeof(t_fdf));
 	init_fdf(fdf);
 	fill_camera(fdf);
-	if (argc == 2)
+	if (argc >= 2 && argc < 4)
 	{
-		fdf->mlx = mlx_init();
-		fdf->win = mlx_new_window(fdf->mlx, WIN_W, WIN_H, name);
 		if ((fd = open(argv[1], O_RDONLY)) == -1)
 			return (ft_error("Could not open file"));
-		else
+		if (argc == 3)
+		{
 			m = read_file(fdf, fd);
-		if (!m)
-			return (ft_error("Wrong inputs"));
-		fdf->points = m;
-		m_move(m, -(fdf->map->w / 2), 0, -(fdf->map->h / 2));
-		res = create_view(fdf); 
-		fdf->drow_points = res;
-		print_usage(fdf);
-		draw_all(fdf);
-		all_controls(fdf);
-		mlx_loop(fdf->mlx);
-		free_matrix(res);
-		free_fdf(fdf);
+			change_colour(fdf, argv[2]);
+			helper_main(fdf, m);
+		}
+		m = read_file(fdf, fd);
+		helper_main(fdf, m);
+		
 	}
+	else
+		return (ft_error("No input file"));
+	free_fdf(fdf);
 //	system("leaks fdf");
 	return (0);
 }
