@@ -9,19 +9,6 @@ int			ft_error(char *s)
 	return (0);
 }
 
-int		close_win(void *param)
-{
-	(void)param;
-	exit(0);
-}
-
-void	all_controls(t_fdf *fdf)
-{
-	mlx_hook(fdf->win, 2, 0, key_controls, fdf);
-	mlx_hook(fdf->win, 4, 0, mouse_scroll, fdf);
-	mlx_hook(fdf->win, 17, 0, close_win, fdf);
-}
-
 void	print_usage(t_fdf *fdf)
 {
 	mlx_string_put(fdf->mlx, fdf->win, 10, 5, 0xFF0000, "How to use:");

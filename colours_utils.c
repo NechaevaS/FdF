@@ -13,6 +13,26 @@
 #include "fdf.h"
 #include <stdio.h>
 
+double		colours_st(t_fdf *fdf, int n)
+{
+	char	tmp[3];
+	double	col;
+
+	ft_strncpy(tmp, &fdf->col->point_colour[fdf->col->pos_start][n], 2);
+	col = ft_atoi_base(tmp,16);
+	return (col);
+}
+
+double		colours_fin(t_fdf *fdf, int n)
+{
+	char	tmp[3];
+	double	col;
+
+	ft_strncpy(tmp, &fdf->col->point_colour[fdf->col->pos_fin][n], 2);
+	col = ft_atoi_base(tmp,16);
+	return (col);
+}
+
 int		colour_blend(t_fdf *fdf, int steps, int curr_st)
 {
 	unsigned int	my_colour;
@@ -22,30 +42,15 @@ int		colour_blend(t_fdf *fdf, int steps, int curr_st)
 	double		r_f;
 	double		g_f;
 	double		b_f;
-	char	tmp[3];
-	int		i = 0;
 
-	ft_strncpy(tmp, &fdf->col->point_colour[fdf->col->pos_start][i], 2);
-	r_st = ft_atoi_base(tmp,16);
-	i = i + 2;
-	ft_strncpy(tmp, &fdf->col->point_colour[fdf->col->pos_start][i], 2);
-	g_st = ft_atoi_base(tmp,16);
-	i = i + 2;
-	ft_strncpy(tmp, &fdf->col->point_colour[fdf->col->pos_start][i], 2);
-	b_st = ft_atoi_base(tmp,16);
-	i = 0;
-	ft_strncpy(tmp, &fdf->col->point_colour[fdf->col->pos_fin][i], 2);
-	r_f = ft_atoi_base(tmp,16);
-	i = i + 2;
-	ft_strncpy(tmp, &fdf->col->point_colour[fdf->col->pos_fin][i], 2);
-	g_f = ft_atoi_base(tmp,16);
-	i = i + 2;
-	ft_strncpy(tmp, &fdf->col->point_colour[fdf->col->pos_fin][i], 2);
-	b_f = ft_atoi_base(tmp,16);
+	r_st = colours_st(fdf, 0);
+	g_st = colours_st(fdf, 2);
+	b_st = colours_st(fdf, 4);
+	r_f = colours_fin(fdf, 0);
+	g_f = colours_fin(fdf, 2);
+	b_f = colours_fin(fdf, 4);
 	if (r_st == r_f && g_st == g_f && b_st == b_f)
-	{
 		my_colour = (r_st * 65536) + (g_st * 256) + b_st;
-	}
 	else
 	{
 		fdf->col->r = r_st + (((r_f - r_st) * curr_st) / steps);
@@ -69,7 +74,11 @@ void	change_colour(t_fdf *fdf, char *str)
 			fdf->col->point_colour[i] = "FF0000";
 		else if (strcmp(str, "blue") == 0)
 			fdf->col->point_colour[i] = "0000FF";
-			else
+		else
+		{
+			ft_error("Please choose one : red, green, blue");
+			exit (1);
+		}
 		i++;
 	}
 }

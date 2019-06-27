@@ -25,21 +25,23 @@ void    m_iso_project(t_matrix *t)
 	mtrx_mltpl_acc(t, project);
 	free(project);
 }
+
 void    m_persp__project(t_matrix *t)
 {
     t_matrix	*project;
 	int			r;
 
-	r = 1 / -10;
+	r = -10;
 	project = init_matrix(4,4);
 	uni_matrix(project);
 	ELEM(project, 0, 0) = 1;
 	ELEM(project, 1, 1) = 1;
 	ELEM(project, 3, 3) = 1;
-	ELEM(project, 2, 3) = r;
+	ELEM(project, 0, 3) = r;
 	mtrx_mltpl_acc(t, project);
 	free(project);
 }
+
 t_matrix    *create_view(t_fdf *fdf)
 {
     t_matrix    *transform;

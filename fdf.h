@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/10 14:23:09 by snechaev          #+#    #+#             */
-/*   Updated: 2019/06/27 11:25:37 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/06/27 15:19:48 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,8 @@ void			fill_camera(t_fdf *fdf);
 void			print_usage(t_fdf *fdf);
 void			init_fdf(t_fdf *fdf);
 void			free_fdf(t_fdf *fdf);
-int				mouse_scroll(int keycode, int x, int y, t_fdf *fdf);
+void			all_controls(t_fdf *fdf);
 void			change_colour(t_fdf *fdf, char *str);
+int				ft_error(char *s);
 
 #endif

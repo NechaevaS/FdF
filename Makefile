@@ -6,7 +6,7 @@
 #    By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/07 14:47:44 by snechaev          #+#    #+#              #
-#    Updated: 2019/06/26 14:55:29 by snechaev         ###   ########.fr        #
+#    Updated: 2019/06/27 13:34:57 by snechaev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ OBJS = main.o\
 			colours_utils.o\
 			init_structures.o\
 			keys_control.o\
-			mouse_control.o\
+			all_controls.o\
 
 
 MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
