@@ -54,7 +54,7 @@ int				helper_main(t_fdf *fdf, t_matrix *m)
 	fdf->points = m;
 	m_move(m, -(fdf->map->w / 2), 0, -(fdf->map->h / 2));
 	res = create_view(fdf);
-	fdf->drow_points = res;
+	fdf->draw_points = res;
 	print_usage(fdf);
 	draw_all(fdf);
 	all_controls(fdf);

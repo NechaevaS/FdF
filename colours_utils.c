@@ -13,50 +13,40 @@
 #include "fdf.h"
 #include <stdio.h>
 
-double		colours_st(t_fdf *fdf, int n)
+double		colours_component(t_fdf *fdf, int id, int n)
 {
 	char	tmp[3];
 	double	col;
 
-	ft_strncpy(tmp, &fdf->col->point_colour[fdf->col->pos_start][n], 2);
+	ft_strncpy(tmp, &fdf->col->point_colour[id][n], 2);
 	col = ft_atoi_base(tmp, 16);
 	return (col);
 }
 
-double		colours_fin(t_fdf *fdf, int n)
-{
-	char	tmp[3];
-	double	col;
-
-	ft_strncpy(tmp, &fdf->col->point_colour[fdf->col->pos_fin][n], 2);
-	col = ft_atoi_base(tmp, 16);
-	return (col);
-}
-
-int			colour_blend(t_fdf *fdf, int steps, int curr_st)
+int			colour_blend(t_fdf *fdf, t_blend *bl)
 {
 	int		c;
 	double	r;
 	double	g;
 	double	b;
 
-	fdf->col->r_st = colours_st(fdf, 0);
-	fdf->col->g_st = colours_st(fdf, 2);
-	fdf->col->b_st = colours_st(fdf, 4);
-	fdf->col->r_f = colours_fin(fdf, 0);
-	fdf->col->g_f = colours_fin(fdf, 2);
-	fdf->col->b_f = colours_fin(fdf, 4);
+	fdf->col->r_st = colours_component(fdf, bl->pos_start, 0);
+	fdf->col->g_st = colours_component(fdf, bl->pos_start, 2);
+	fdf->col->b_st = colours_component(fdf, bl->pos_start, 4);
+	fdf->col->r_f = colours_component(fdf, bl->pos_fin, 0);
+	fdf->col->g_f = colours_component(fdf,  bl->pos_fin, 2);
+	fdf->col->b_f = colours_component(fdf,  bl->pos_fin, 4);
 	if (fdf->col->r_st == fdf->col->r_f && fdf->col->g_st == fdf->col->g_f
 		&& fdf->col->b_st == fdf->col->b_f)
 		c = (fdf->col->r_st * 65536) + (fdf->col->g_st * 256) + fdf->col->b_st;
 	else
 	{
 		r = fdf->col->r_st + (((fdf->col->r_f - fdf->col->r_st) *
-			curr_st) / steps);
+			bl->curr_st) / bl->steps);
 		g = fdf->col->g_st + (((fdf->col->g_f - fdf->col->g_st) *
-			curr_st) / steps);
+			bl->curr_st) / bl->steps);
 		b = fdf->col->b_st + (((fdf->col->b_f - fdf->col->b_st) *
-			curr_st) / steps);
+			bl->curr_st) / bl->steps);
 		c = (r * 65536) + (g * 256) + b;
 	}
 	return (c);

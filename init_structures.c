@@ -14,8 +14,9 @@
 
 void			fill_camera(t_fdf *fdf)
 {
-	fdf->cam->zoom = 20;
-	fdf->cam->flat = 20;
+	fdf->cam->x_zoom = 20;
+	fdf->cam->y_zoom = 20;
+	fdf->cam->z_zoom = 20;
 	fdf->cam->x_rot = 35.26 + 180;
 	fdf->cam->y_rot = -45;
 	fdf->cam->z_rot = 0;
@@ -45,8 +46,6 @@ void			init_fdf(t_fdf *fdf)
 	fdf->col->g_f = 0;
 	fdf->col->b_f = 0;
 	fdf->col->point_colour = NULL;
-	fdf->col->pos_start = 0;
-	fdf->col->pos_fin = 0;
 }
 
 void			free_fdf(t_fdf *fdf)

@@ -11,6 +11,12 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
+# define ZOOM_ADD(cam, inc) \
+{ \
+	(cam)->x_zoom += (inc); \
+	(cam)->y_zoom += (inc); \
+	(cam)->z_zoom += (inc); \
+}
 
 void			control_move_view(t_fdf *fdf, int keycode)
 {
@@ -32,7 +38,7 @@ void			control_move_view(t_fdf *fdf, int keycode)
 		fdf->cam->y_rot = 0;
 	}
 	res = create_view(fdf);
-	fdf->drow_points = res;
+	fdf->draw_points = res;
 	mlx_clear_window(fdf->mlx, fdf->win);
 	print_usage(fdf);
 	draw_all(fdf);
@@ -45,20 +51,22 @@ void			control_zoom(t_fdf *fdf, int keycode)
 	if (keycode == KEY_NUM_PLUS || keycode == KEY_MAIN_PLUS ||
 		keycode == MOUSE_SCROLL_UP)
 	{
-		fdf->cam->zoom++;
+		ZOOM_ADD(fdf->cam, 1)
 	}
 	else if (keycode == KEY_NUM_MINUS || keycode == KEY_MAIN_MINUS ||
 		keycode == MOUSE_SCROLL_DOWN)
 	{
-		if (fdf->cam->zoom >= 1)
-			fdf->cam->zoom--;
+		if (fdf->cam->x_zoom >= 1 && fdf->cam->y_zoom >= 1 && fdf->cam->z_zoom >= 1)
+			ZOOM_ADD(fdf->cam, -1)
 		else
 		{
-			fdf->cam->zoom = 1;
+			fdf->cam->x_zoom = 1;
+			fdf->cam->y_zoom = 1;
+			fdf->cam->z_zoom = 1;
 		}
 	}
 	res = create_view(fdf);
-	fdf->drow_points = res;
+	fdf->draw_points = res;
 	mlx_clear_window(fdf->mlx, fdf->win);
 	print_usage(fdf);
 	draw_all(fdf);
@@ -77,7 +85,7 @@ void			control_rotate(t_fdf *fdf, int keycode)
 	else if (keycode == KEY_NUM_4)
 		fdf->cam->y_rot -= 1;
 	res = create_view(fdf);
-	fdf->drow_points = res;
+	fdf->draw_points = res;
 	mlx_clear_window(fdf->mlx, fdf->win);
 	print_usage(fdf);
 	draw_all(fdf);
@@ -89,18 +97,18 @@ void			control_flat(t_fdf *fdf, int keycode)
 
 	if (keycode == KEY_PAGE_UP)
 	{
-		if (fdf->cam->flat > 50)
-			fdf->cam->flat = 50;
-		fdf->cam->flat += 0.5;
+		if (fdf->cam->y_zoom > 50)
+			fdf->cam->y_zoom = 50;
+		fdf->cam->y_zoom += 0.5;
 	}
 	else if (keycode == KEY_PAGE_DOWN)
 	{
-		if (fdf->cam->flat < 0.5)
-			fdf->cam->flat = 0.5;
-		fdf->cam->flat -= 0.5;
+		if (fdf->cam->y_zoom < 0.5)
+			fdf->cam->y_zoom = 0.5;
+		fdf->cam->y_zoom -= 0.5;
 	}
 	res = create_view(fdf);
-	fdf->drow_points = res;
+	fdf->draw_points = res;
 	mlx_clear_window(fdf->mlx, fdf->win);
 	print_usage(fdf);
 	draw_all(fdf);

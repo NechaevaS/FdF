@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <X11/Xlib.h>
 
 int		mouse_scroll(int keycode, int x, int y, t_fdf *fdf)
 {
@@ -29,7 +30,8 @@ int		close_win(void *param)
 
 void	all_controls(t_fdf *fdf)
 {
-	mlx_hook(fdf->win, 2, 0, key_controls, fdf);
-	mlx_hook(fdf->win, 4, 0, mouse_scroll, fdf);
-	mlx_hook(fdf->win, 17, 0, close_win, fdf);
+	mlx_hook(fdf->win, KeyPress, KeyPressMask|KeyReleaseMask, key_controls, fdf);
+	// mlx_hook(fdf->win, 2, 0, key_controls, fdf);
+	// mlx_hook(fdf->win, 4, 0, mouse_scroll, fdf);
+	// mlx_hook(fdf->win, 17, 0, close_win, fdf);
 }

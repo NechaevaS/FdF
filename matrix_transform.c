@@ -12,15 +12,15 @@
 
 #include "fdf.h"
 
-void			m_scale(t_matrix *t, double zoom)
+void			m_scale(t_matrix *t, t_fdf *fdf)
 {
 	t_matrix	*scale;
 
 	scale = init_matrix(4, 4);
 	uni_matrix(scale);
-	ELEM(scale, 0, 0) = zoom;
-	ELEM(scale, 1, 1) = zoom;
-	ELEM(scale, 2, 2) = zoom;
+	ELEM(scale, 0, 0) = fdf->cam->x_zoom;
+	ELEM(scale, 1, 1) = fdf->cam->y_zoom;
+	ELEM(scale, 2, 2) = fdf->cam->z_zoom;
 	ELEM(scale, 3, 3) = 1;
 	mtrx_mltpl_acc(t, scale);
 	free(scale);

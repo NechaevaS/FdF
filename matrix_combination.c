@@ -61,7 +61,7 @@ t_matrix		*create_view(t_fdf *fdf)
 
 	transform = init_matrix(4, 4);
 	uni_matrix(transform);
-	m_scale(transform, fdf->cam->zoom);
+	m_scale(transform, fdf);
 	m_rotate_y(transform, fdf->cam->y_rot);
 	m_rotate_x(transform, fdf->cam->x_rot);
 	m_move(transform, (fdf->cam->x + (WIN_W / 2) - (fdf->map->w / 2)),

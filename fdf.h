@@ -27,6 +27,15 @@
 # define WIN_W	1200
 # define WIN_H	1200
 # define ELEM(m, row, col) ((m)->data[(row) * ((m)->n_col) + (col)])
+typedef struct
+{
+	double	x;
+	double	y;
+	double	a;
+	double	b;
+	double	dx;
+	double	dy;
+}				t_line;
 
 typedef struct
 {
@@ -50,26 +59,34 @@ typedef struct
 	double		g_f;
 	double		b_f;
 	char		**point_colour;
+}				t_colour;
+
+typedef struct
+{
 	int			pos_start;
 	int			pos_fin;
-}				t_colour;
+	int			steps;
+	int			curr_st;
+
+}				t_blend;
 
 typedef struct
 {
 	int			x;
 	int			y;
 	int			z;
-	double		flat;
+	double		x_zoom;
+	double		y_zoom;
+	double		z_zoom;
 	double		x_rot;
 	double		y_rot;
 	double		z_rot;
-	int			zoom;
 }				t_camera;
 
 typedef struct
 {
 	t_matrix	*points;
-	t_matrix	*drow_points;
+	t_matrix	*draw_points;
 	t_camera	*cam;
 	t_colour	*col;
 	t_size		*map;
@@ -84,14 +101,14 @@ void			mtrx_mltpl_acc(t_matrix *a, t_matrix *b);
 t_matrix		*init_matrix(int row, int col);
 void			free_matrix(t_matrix *m);
 void			uni_matrix(t_matrix *u);
-void			m_scale(t_matrix *t, double zoom);
+void			m_scale(t_matrix *t, t_fdf *fdf);
 void			m_rotate_z(t_matrix *t, double a);
 void			m_rotate_y(t_matrix *t, double a);
 void			m_rotate_x(t_matrix *t, double a);
 void			m_move(t_matrix *t, double dx, double dy, double dz);
 void			m_project(t_matrix *t);
 t_matrix		*create_view(t_fdf *fdf);
-int				colour_blend(t_fdf *fdf, int steps, int curr_st);
+int				colour_blend(t_fdf *fdf, t_blend *bl);
 int				key_controls(int keycode, t_fdf *fdf);
 void			fill_camera(t_fdf *fdf);
 void			print_usage(t_fdf *fdf);

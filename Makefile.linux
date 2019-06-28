@@ -14,16 +14,19 @@ NAME = fdf
 
 OBJS = main.o\
        		read_file.o\
-			create_line.o\
-			matrix.o\
+			draw.o\
+			matrix_utils.o\
 			matrix_transform.o\
 			matrix_combination.o\
-			colours.o\
+			colours_utils.o\
+			init_structures.o\
+			keys_control.o\
+			all_controls.o\
 
 LIBS = libft/libft.a ./minilibx/libmlx_Linux.a -lX11 -lXext -lm
 #LIBS = MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
 
-CFLAGS = -Wall -Wextra -Werror -g -O0
+CFLAGS = -Wall -Wextra -Werror -g -O0 
 
 #-fsanitize=address
 
@@ -33,7 +36,7 @@ all : $(NAME)
 $(NAME) : $(OBJS) lib
 	gcc $(CFLAGS) -I./ -I./minilibx  $(MLXFLAGS) $(OBJS) $(LIBS) -o $(NAME)
 
-$(OBJS) : fdf.h
+$(OBJS) : fdf.h key_codes.h
 
 lib:
 	@make -C libft
