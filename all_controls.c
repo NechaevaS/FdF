@@ -6,13 +6,13 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 13:40:35 by snechaev          #+#    #+#             */
-/*   Updated: 2019/06/27 13:33:50 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/06/27 15:37:27 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int			mouse_scroll(int keycode, int x, int y, t_fdf *fdf)
+int		mouse_scroll(int keycode, int x, int y, t_fdf *fdf)
 {
 	(void)x;
 	(void)y;
@@ -20,6 +20,7 @@ int			mouse_scroll(int keycode, int x, int y, t_fdf *fdf)
 		key_controls(keycode, fdf);
 	return (0);
 }
+
 int		close_win(void *param)
 {
 	(void)param;

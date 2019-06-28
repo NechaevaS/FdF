@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colours_utils.c                                  :+:      :+:    :+:   */
+/*   colours_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/30 13:36:18 by snechaev          #+#    #+#             */
-/*   Updated: 2019/06/26 13:44:48 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/06/27 15:54:23 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ double		colours_st(t_fdf *fdf, int n)
 	double	col;
 
 	ft_strncpy(tmp, &fdf->col->point_colour[fdf->col->pos_start][n], 2);
-	col = ft_atoi_base(tmp,16);
+	col = ft_atoi_base(tmp, 16);
 	return (col);
 }
 
@@ -29,44 +29,45 @@ double		colours_fin(t_fdf *fdf, int n)
 	double	col;
 
 	ft_strncpy(tmp, &fdf->col->point_colour[fdf->col->pos_fin][n], 2);
-	col = ft_atoi_base(tmp,16);
+	col = ft_atoi_base(tmp, 16);
 	return (col);
 }
 
-int		colour_blend(t_fdf *fdf, int steps, int curr_st)
+int			colour_blend(t_fdf *fdf, int steps, int curr_st)
 {
-	unsigned int	my_colour;
-	double		r_st;
-	double		g_st;
-	double		b_st;
-	double		r_f;
-	double		g_f;
-	double		b_f;
+	int		c;
+	double	r;
+	double	g;
+	double	b;
 
-	r_st = colours_st(fdf, 0);
-	g_st = colours_st(fdf, 2);
-	b_st = colours_st(fdf, 4);
-	r_f = colours_fin(fdf, 0);
-	g_f = colours_fin(fdf, 2);
-	b_f = colours_fin(fdf, 4);
-	if (r_st == r_f && g_st == g_f && b_st == b_f)
-		my_colour = (r_st * 65536) + (g_st * 256) + b_st;
+	fdf->col->r_st = colours_st(fdf, 0);
+	fdf->col->g_st = colours_st(fdf, 2);
+	fdf->col->b_st = colours_st(fdf, 4);
+	fdf->col->r_f = colours_fin(fdf, 0);
+	fdf->col->g_f = colours_fin(fdf, 2);
+	fdf->col->b_f = colours_fin(fdf, 4);
+	if (fdf->col->r_st == fdf->col->r_f && fdf->col->g_st == fdf->col->g_f
+		&& fdf->col->b_st == fdf->col->b_f)
+		c = (fdf->col->r_st * 65536) + (fdf->col->g_st * 256) + fdf->col->b_st;
 	else
 	{
-		fdf->col->r = r_st + (((r_f - r_st) * curr_st) / steps);
-		fdf->col->g = g_st + (((g_f - g_st) * curr_st) / steps);
-		fdf->col->b = b_st + (((b_f - b_st) * curr_st) / steps);
-		my_colour = (fdf->col->r * 65536) + (fdf->col->g * 256) + fdf->col->b;
+		r = fdf->col->r_st + (((fdf->col->r_f - fdf->col->r_st) *
+			curr_st) / steps);
+		g = fdf->col->g_st + (((fdf->col->g_f - fdf->col->g_st) *
+			curr_st) / steps);
+		b = fdf->col->b_st + (((fdf->col->b_f - fdf->col->b_st) *
+			curr_st) / steps);
+		c = (r * 65536) + (g * 256) + b;
 	}
-	return (my_colour);
+	return (c);
 }
 
-void	change_colour(t_fdf *fdf, char *str)
+void		change_colour(t_fdf *fdf, char *str)
 {
-	int i;
+	int		i;
 
 	i = 0;
-	while(i < fdf->map->h * fdf->map->w)
+	while (i < fdf->map->h * fdf->map->w)
 	{
 		if (strcmp(str, "green") == 0)
 			fdf->col->point_colour[i] = "00FF00";
@@ -77,7 +78,7 @@ void	change_colour(t_fdf *fdf, char *str)
 		else
 		{
 			ft_error("Please choose one : red, green, blue");
-			exit (1);
+			exit(1);
 		}
 		i++;
 	}

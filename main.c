@@ -1,26 +1,39 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/06/27 16:54:28 by snechaev          #+#    #+#             */
+/*   Updated: 2019/06/27 16:59:02 by snechaev         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "fdf.h"
-//#include <X11/Xlib.h>
-//#include "minilibx_macos/mlx.h"
 
-int			ft_error(char *s)
+int				ft_error(char *s)
 {
 	ft_putendl_fd(s, 2);
 	return (0);
 }
 
-void	print_usage(t_fdf *fdf)
+void			print_usage(t_fdf *fdf)
 {
 	mlx_string_put(fdf->mlx, fdf->win, 10, 5, 0xFF0000, "How to use:");
 	mlx_string_put(fdf->mlx, fdf->win, 10, 35, 0x00FF00, "Move:");
 	mlx_string_put(fdf->mlx, fdf->win, 10, 65, 0xFFFFFF, "Arrows");
 	mlx_string_put(fdf->mlx, fdf->win, 10, 95, 0x00FF00, "Rotate:");
-	mlx_string_put(fdf->mlx, fdf->win, 10, 125, 0xFFFFFF, "up/down	  - NUM KEYkey 2/8");
-	mlx_string_put(fdf->mlx, fdf->win, 10, 155, 0xFFFFFF, "right/left - NUM key 2/8");
+	mlx_string_put(fdf->mlx, fdf->win, 10, 125, 0xFFFFFF,
+		"up/down - NUM KEYkey 2/8");
+	mlx_string_put(fdf->mlx, fdf->win, 10, 155, 0xFFFFFF,
+		"right/left - NUM key 2/8");
 	mlx_string_put(fdf->mlx, fdf->win, 10, 185, 0x00FF00, "Zoom:");
-	mlx_string_put(fdf->mlx, fdf->win, 10, 215, 0xFFFFFF, "Scroll or NUM key +/-");
+	mlx_string_put(fdf->mlx, fdf->win, 10, 215, 0xFFFFFF,
+		"Scroll or NUM key +/-");
 	mlx_string_put(fdf->mlx, fdf->win, 10, 245, 0x00FF00, "Flatten:");
-	mlx_string_put(fdf->mlx, fdf->win, 10, 275, 0xFFFFFF, "PAGE UP / PAGE DOWN");
+	mlx_string_put(fdf->mlx, fdf->win, 10, 275, 0xFFFFFF,
+		"PAGE UP / PAGE DOWN");
 	mlx_string_put(fdf->mlx, fdf->win, 10, 305, 0x00FF00, "Projection:");
 	mlx_string_put(fdf->mlx, fdf->win, 10, 335, 0xFFFFFF, "isometric  - key I");
 	mlx_string_put(fdf->mlx, fdf->win, 10, 365, 0xFFFFFF, "plan		  - key P");
@@ -28,10 +41,9 @@ void	print_usage(t_fdf *fdf)
 	mlx_string_put(fdf->mlx, fdf->win, 10, 425, 0xFFFFFF, "ESC");
 }
 
-int			helper_main(t_fdf *fdf, t_matrix *m)
+int				helper_main(t_fdf *fdf, t_matrix *m)
 {
 	t_matrix	*res;
-//	t_matrix	*m;
 	char		*name;
 
 	name = "FDF";
@@ -41,21 +53,20 @@ int			helper_main(t_fdf *fdf, t_matrix *m)
 		return (ft_error("Wrong inputs"));
 	fdf->points = m;
 	m_move(m, -(fdf->map->w / 2), 0, -(fdf->map->h / 2));
-	res = create_view(fdf); 
+	res = create_view(fdf);
 	fdf->drow_points = res;
 	print_usage(fdf);
 	draw_all(fdf);
 	all_controls(fdf);
 	mlx_loop(fdf->mlx);
 	free_matrix(res);
-	
 	return (0);
 }
 
-int			main(int argc, char **argv)
+int				main(int argc, char **argv)
 {
 	int			fd;
-	t_fdf 		*fdf;
+	t_fdf		*fdf;
 	t_matrix	*m;
 
 	fd = 0;
@@ -74,11 +85,9 @@ int			main(int argc, char **argv)
 		}
 		m = read_file(fdf, fd);
 		helper_main(fdf, m);
-		
 	}
 	else
 		return (ft_error("No input file"));
 	free_fdf(fdf);
-//	system("leaks fdf");
 	return (0);
 }

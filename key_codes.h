@@ -6,12 +6,12 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 12:07:39 by snechaev          #+#    #+#             */
-/*   Updated: 2019/06/26 11:14:50 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/06/27 16:25:01 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KEYS_CODES_H
-# define KEYS_CODES_H
+#ifndef KEY_CODES_H
+# define KEY_CODES_H
 
 # define MOUSE_LEFT_BUTTON	1
 # define MOUSE_RIGHT_BUTTON	2
