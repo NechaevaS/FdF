@@ -12,6 +12,15 @@
 
 #include "fdf.h"
 
+void		fill_t_line(t_fdf *fdf, int start, int fin, t_line *line)
+{
+
+	line->x = ELEM(fdf->draw_points, start, 0);
+	line->y = ELEM(fdf->draw_points, start, 1);
+	line->dx = ELEM(fdf->draw_points, fin, 0) - line->x;
+	line->dy = ELEM(fdf->draw_points, fin, 1) - line->y;
+}
+
 void		create_hor_line(t_fdf *fdf, int start, int fin)
 {
 	t_line	line;
@@ -21,10 +30,7 @@ void		create_hor_line(t_fdf *fdf, int start, int fin)
 
 	bl.pos_start = start;
 	bl.pos_fin = fin;
-	line.x = ELEM(fdf->draw_points, start, 0);
-	line.y = ELEM(fdf->draw_points, start, 1);
-	line.dx = ELEM(fdf->draw_points, fin, 0) - line.x;
-	line.dy = ELEM(fdf->draw_points, fin, 1) - line.y;
+	fill_t_line(fdf, start, fin, &line);
 	bl.steps = line.dx;
 	line.a = (line.dy / line.dx);
 	line.b = line.y - line.a * line.x;
@@ -54,10 +60,7 @@ void		create_vert_line(t_fdf *fdf, int start, int fin)
 
 	bl.pos_start = start;
 	bl.pos_fin = fin;
-	line.x = ELEM(fdf->draw_points, start, 0);
-	line.y = ELEM(fdf->draw_points, start, 1);
-	line.dx = ELEM(fdf->draw_points, fin, 0) - line.x;
-	line.dy = ELEM(fdf->draw_points, fin, 1) - line.y;
+	fill_t_line(fdf, start, fin, &line);
 	bl.steps = line.dy;
 	line.a = (line.dx / line.dy);
 	line.b = line.x - line.a * line.y;
@@ -77,11 +80,11 @@ void		create_vert_line(t_fdf *fdf, int start, int fin)
 	}
 }
 
-void	create_line(t_fdf *fdf, int start, int fin)
+void		create_line(t_fdf *fdf, int start, int fin)
 {
-	double dx;
-	double dy;
-	double slope;
+	double	dx;
+	double	dy;
+	double	slope;
 
 	dx = ELEM(fdf->draw_points, fin, 0) - ELEM(fdf->draw_points, start, 0);
 	dy = ELEM(fdf->draw_points, fin, 1) - ELEM(fdf->draw_points, start, 1);
@@ -125,32 +128,3 @@ void		draw_all(t_fdf *fdf)
 		j++;
 	}
 }
-// void		draw_all(t_fdf *fdf)
-// {
-// 	int		i;
-// 	int		j;
-// 	int		row;
-
-// 	j = 0;
-// 	while (j < fdf->map->h)
-// 	{
-// 		i = 0;
-// 		while (i < fdf->map->w)
-// 		{
-// 			row = fdf->map->w * j + i;
-// 			fdf->col->pos_start = row;
-// 			if (i + 1 < fdf->map->w)
-// 			{
-// 				fdf->col->pos_fin = row + 1;
-// 				create_line(fdf, &ELEM(fdf->drow_points, row, 0), &ELEM(fdf->drow_points, row + 1, 0));
-// 			}
-// 			if (j + 1 < fdf->map->h)
-// 			{
-// 				fdf->col->pos_fin = row + fdf->map->w;
-// 				create_line(fdf, &ELEM(fdf->drow_points, row, 0), &ELEM(fdf->drow_points, row + fdf->map->w, 0));
-// 			}
-// 			i++;
-// 		}
-// 		j++;
-// 	}
-// }

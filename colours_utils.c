@@ -52,6 +52,43 @@ int			colour_blend(t_fdf *fdf, t_blend *bl)
 	return (c);
 }
 
+void		gradient(t_fdf *fdf)
+{
+
+	int i;
+	char *grad[60];
+	t_blend  bl;
+
+	i = 0;
+	bl.pos_start = 0;
+	bl.pos_fin = 50;
+	bl.steps = 50;
+	bl.curr_st = i;
+	fdf->col->point_colour[0] = "00FF00";
+	fdf->col->point_colour[50] = "FFFFFF";
+    while(i < 50)
+	{
+		grad[i] = ft_itoa_base (colour_blend(fdf, &bl), 16);
+		printf("%s\n", grad[i]);
+		i++;
+	}
+
+	i = 0;
+	while (i < fdf->map->h * fdf->map->w)
+	{
+		bl.curr_st = ELEM(fdf->points, i, 1);
+		if (bl.curr_st <= 0)
+			fdf->col->point_colour[i] = "00FF00";
+		else if (bl.curr_st >= 50)
+			fdf->col->point_colour[i] = "FFFFFF";
+		else
+		{
+			fdf->col->point_colour[i] = grad[bl.steps - bl.curr_st];
+		}
+		i++;
+	}
+}
+
 void		change_colour(t_fdf *fdf, char *str)
 {
 	int		i;
@@ -59,7 +96,9 @@ void		change_colour(t_fdf *fdf, char *str)
 	i = 0;
 	while (i < fdf->map->h * fdf->map->w)
 	{
-		if (strcmp(str, "green") == 0)
+		if (strcmp(str, "gradient") == 0)
+			gradient(fdf);
+		else if (strcmp(str, "green") == 0)
 			fdf->col->point_colour[i] = "00FF00";
 		else if (strcmp(str, "red") == 0)
 			fdf->col->point_colour[i] = "FF0000";
