@@ -6,11 +6,12 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 14:10:25 by snechaev          #+#    #+#             */
-/*   Updated: 2019/06/27 16:53:18 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/07/01 10:49:30 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
 # define ZOOM_ADD(cam, inc) \
 { \
 	(cam)->x_zoom += (inc); \
@@ -37,6 +38,11 @@ void			control_move_view(t_fdf *fdf, int keycode)
 		fdf->cam->x_rot = 90;
 		fdf->cam->y_rot = 0;
 	}
+	else if (keycode == KEY_MAIN_O)
+	{
+		fdf->cam->x_rot = 45 + 180;
+		fdf->cam->y_rot = 0;
+	}
 	res = create_view(fdf);
 	fdf->draw_points = res;
 	mlx_clear_window(fdf->mlx, fdf->win);
@@ -56,7 +62,8 @@ void			control_zoom(t_fdf *fdf, int keycode)
 	else if (keycode == KEY_NUM_MINUS || keycode == KEY_MAIN_MINUS ||
 		keycode == MOUSE_SCROLL_DOWN)
 	{
-		if (fdf->cam->x_zoom >= 1 && fdf->cam->y_zoom >= 1 && fdf->cam->z_zoom >= 1)
+		if (fdf->cam->x_zoom >= 1 && fdf->cam->y_zoom >= 1 &&
+			fdf->cam->z_zoom >= 1)
 			ZOOM_ADD(fdf->cam, -1)
 		else
 		{
@@ -120,7 +127,7 @@ int				key_controls(int keycode, t_fdf *fdf)
 		exit(0);
 	if (keycode == KEY_ARROW_RIGHT || keycode == KEY_ARROW_LEFT ||
 		keycode == KEY_ARROW_UP || keycode == KEY_ARROW_DOWN ||
-		keycode == KEY_MAIN_P || keycode == KEY_MAIN_I)
+		keycode == KEY_MAIN_P || keycode == KEY_MAIN_I || keycode == KEY_MAIN_O)
 		control_move_view(fdf, keycode);
 	else if (keycode == KEY_NUM_PLUS || keycode == KEY_MAIN_PLUS
 		|| keycode == MOUSE_SCROLL_UP || keycode == KEY_NUM_MINUS ||

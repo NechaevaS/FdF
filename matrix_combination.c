@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 17:04:31 by snechaev          #+#    #+#             */
-/*   Updated: 2019/06/27 17:04:35 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/07/01 10:37:37 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,6 @@ void			m_iso_project(t_matrix *t)
 	project = init_matrix(4, 4);
 	uni_matrix(project);
 	ELEM(project, 2, 2) = 0;
-	mtrx_mltpl_acc(t, project);
-	free(project);
-}
-
-void			m_persp__project(t_matrix *t)
-{
-	t_matrix	*project;
-	int			r;
-
-	r = -10;
-	project = init_matrix(4, 4);
-	uni_matrix(project);
-	ELEM(project, 0, 0) = 1;
-	ELEM(project, 1, 1) = 1;
-	ELEM(project, 3, 3) = 1;
-	ELEM(project, 0, 3) = r;
 	mtrx_mltpl_acc(t, project);
 	free(project);
 }

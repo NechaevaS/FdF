@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 12:07:39 by snechaev          #+#    #+#             */
-/*   Updated: 2019/06/27 16:25:01 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/07/01 10:45:46 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 
 # define KEY_MAIN_I			34
 # define KEY_MAIN_P			35
+# define KEY_MAIN_O			31
 
 # define KEY_SPACE			49
 

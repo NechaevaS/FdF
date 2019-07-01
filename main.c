@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 16:54:28 by snechaev          #+#    #+#             */
-/*   Updated: 2019/06/27 16:59:02 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/07/01 10:46:39 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ void			print_usage(t_fdf *fdf)
 	mlx_string_put(fdf->mlx, fdf->win, 10, 305, 0x00FF00, "Projection:");
 	mlx_string_put(fdf->mlx, fdf->win, 10, 335, 0xFFFFFF, "isometric  - key I");
 	mlx_string_put(fdf->mlx, fdf->win, 10, 365, 0xFFFFFF, "plan		  - key P");
-	mlx_string_put(fdf->mlx, fdf->win, 10, 395, 0x00FF00, "For exit");
-	mlx_string_put(fdf->mlx, fdf->win, 10, 425, 0xFFFFFF, "ESC");
+	mlx_string_put(fdf->mlx, fdf->win, 10, 395, 0xFFFFFF, "oblique	  - key O");
+	mlx_string_put(fdf->mlx, fdf->win, 10, 425, 0x00FF00, "For exit");
+	mlx_string_put(fdf->mlx, fdf->win, 10, 455, 0xFFFFFF, "ESC");
 }
 
 int				helper_main(t_fdf *fdf, t_matrix *m)
