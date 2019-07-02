@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 17:05:05 by snechaev          #+#    #+#             */
-/*   Updated: 2019/06/27 17:08:13 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/07/01 15:50:59 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void			m_scale(t_matrix *t, t_fdf *fdf)
 	ELEM(scale, 2, 2) = fdf->cam->z_zoom;
 	ELEM(scale, 3, 3) = 1;
 	mtrx_mltpl_acc(t, scale);
-	free(scale);
+	free_matrix(scale);
 }
 
 void			m_rotate_z(t_matrix *t, double a)
@@ -41,7 +41,7 @@ void			m_rotate_z(t_matrix *t, double a)
 	ELEM(rotate, 0, 1) = s;
 	ELEM(rotate, 1, 0) = -s;
 	mtrx_mltpl_acc(t, rotate);
-	free(rotate);
+	free_matrix(rotate);
 }
 
 void			m_rotate_y(t_matrix *t, double a)
@@ -59,7 +59,7 @@ void			m_rotate_y(t_matrix *t, double a)
 	ELEM(rotate, 2, 0) = s;
 	ELEM(rotate, 2, 2) = c;
 	mtrx_mltpl_acc(t, rotate);
-	free(rotate);
+	free_matrix(rotate);
 }
 
 void			m_rotate_x(t_matrix *t, double a)
@@ -77,7 +77,7 @@ void			m_rotate_x(t_matrix *t, double a)
 	ELEM(rotate, 2, 1) = -s;
 	ELEM(rotate, 2, 2) = c;
 	mtrx_mltpl_acc(t, rotate);
-	free(rotate);
+	free_matrix(rotate);
 }
 
 void			m_move(t_matrix *t, double dx, double dy, double dz)
@@ -90,5 +90,5 @@ void			m_move(t_matrix *t, double dx, double dy, double dz)
 	ELEM(move, 3, 1) = dy;
 	ELEM(move, 3, 2) = dz;
 	mtrx_mltpl_acc(t, move);
-	free(move);
+	free_matrix(move);
 }

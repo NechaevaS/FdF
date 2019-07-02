@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/30 13:36:18 by snechaev          #+#    #+#             */
-/*   Updated: 2019/07/01 10:02:08 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/07/01 11:38:49 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int			colour_blend(t_fdf *fdf, t_blend *bl)
 	fdf->col->g_st = colours_component(fdf, bl->pos_start, 2);
 	fdf->col->b_st = colours_component(fdf, bl->pos_start, 4);
 	fdf->col->r_f = colours_component(fdf, bl->pos_fin, 0);
-	fdf->col->g_f = colours_component(fdf,  bl->pos_fin, 2);
-	fdf->col->b_f = colours_component(fdf,  bl->pos_fin, 4);
+	fdf->col->g_f = colours_component(fdf, bl->pos_fin, 2);
+	fdf->col->b_f = colours_component(fdf, bl->pos_fin, 4);
 	if (fdf->col->r_st == fdf->col->r_f && fdf->col->g_st == fdf->col->g_f
 		&& fdf->col->b_st == fdf->col->b_f)
 		c = (fdf->col->r_st * 65536) + (fdf->col->g_st * 256) + fdf->col->b_st;
@@ -59,7 +59,6 @@ void		change_colour(t_fdf *fdf, char *str)
 	i = 0;
 	while (i < fdf->map->h * fdf->map->w)
 	{
-
 		if (strcmp(str, "green") == 0)
 			fdf->col->point_colour[i] = "00FF00";
 		else if (strcmp(str, "red") == 0)

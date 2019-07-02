@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 17:04:31 by snechaev          #+#    #+#             */
-/*   Updated: 2019/07/01 10:37:37 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/07/01 16:58:02 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ void			m_iso_project(t_matrix *t)
 	uni_matrix(project);
 	ELEM(project, 2, 2) = 0;
 	mtrx_mltpl_acc(t, project);
-	free(project);
+	free_matrix(project);
 }
 
-t_matrix		*create_view(t_fdf *fdf)
+void		create_view(t_fdf *fdf)
 {
 	t_matrix	*transform;
 	t_matrix	*new_points;
@@ -52,6 +52,7 @@ t_matrix		*create_view(t_fdf *fdf)
 		(fdf->cam->y + (WIN_H / 2) - (fdf->map->h / 2)), 0);
 	m_iso_project(transform);
 	new_points = mtrx_mltpl(fdf->points, transform);
+	fdf->draw_points = new_points;
 	free_matrix(transform);
-	return (new_points);
+//	free_matrix(new_points);
 }

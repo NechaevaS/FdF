@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/10 14:23:09 by snechaev          #+#    #+#             */
-/*   Updated: 2019/06/27 16:37:09 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/07/01 16:57:24 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,32 @@
 # define WIN_W	1200
 # define WIN_H	1200
 # define ELEM(m, row, col) ((m)->data[(row) * ((m)->n_col) + (col)])
+
 typedef struct
 {
-	double	x;
-	double	y;
-	double	a;
-	double	b;
-	double	dx;
-	double	dy;
+	double		x;
+	double		y;
+	double		a;
+	double		b;
+	double		dx;
+	double		dy;
+
+	
+	int			dir;
 }				t_line;
+
+typedef struct
+{
+	int			i;
+	int			j;
+	int			k;
+}				t_help;
 
 typedef struct
 {
 	int			w;
 	int			h;
 }				t_size;
-
-typedef struct
-{
-	int			n_col;
-	int			n_row;
-	double		*data;
-}				t_matrix;
 
 typedef struct
 {
@@ -85,6 +89,13 @@ typedef struct
 
 typedef struct
 {
+	int			n_col;
+	int			n_row;
+	double		*data;
+}				t_matrix;
+
+typedef struct	s_fdf
+{
 	t_matrix	*points;
 	t_matrix	*draw_points;
 	t_camera	*cam;
@@ -107,8 +118,13 @@ void			m_rotate_y(t_matrix *t, double a);
 void			m_rotate_x(t_matrix *t, double a);
 void			m_move(t_matrix *t, double dx, double dy, double dz);
 void			m_project(t_matrix *t);
-t_matrix		*create_view(t_fdf *fdf);
+void			create_view(t_fdf *fdf);
 int				colour_blend(t_fdf *fdf, t_blend *bl);
+void			control_move(t_fdf *fdf, int keycode);
+void			control_zoom(t_fdf *fdf, int keycode);
+void			control_rotate(t_fdf *fdf, int keycode);
+void			control_flat(t_fdf *fdf, int keycode);
+void			control_view(t_fdf *fdf, int keycode);
 int				key_controls(int keycode, t_fdf *fdf);
 void			fill_camera(t_fdf *fdf);
 void			print_usage(t_fdf *fdf);

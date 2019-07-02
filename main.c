@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 16:54:28 by snechaev          #+#    #+#             */
-/*   Updated: 2019/07/01 10:46:39 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/07/01 16:36:08 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,13 @@ void			print_usage(t_fdf *fdf)
 	mlx_string_put(fdf->mlx, fdf->win, 10, 305, 0x00FF00, "Projection:");
 	mlx_string_put(fdf->mlx, fdf->win, 10, 335, 0xFFFFFF, "isometric  - key I");
 	mlx_string_put(fdf->mlx, fdf->win, 10, 365, 0xFFFFFF, "plan		  - key P");
-	mlx_string_put(fdf->mlx, fdf->win, 10, 395, 0xFFFFFF, "oblique	  - key O");
+	mlx_string_put(fdf->mlx, fdf->win, 10, 395, 0xFFFFFF, "dimetric	  - key D");
 	mlx_string_put(fdf->mlx, fdf->win, 10, 425, 0x00FF00, "For exit");
 	mlx_string_put(fdf->mlx, fdf->win, 10, 455, 0xFFFFFF, "ESC");
 }
 
 int				helper_main(t_fdf *fdf, t_matrix *m)
 {
-	t_matrix	*res;
 	char		*name;
 
 	name = "FDF";
@@ -54,41 +53,38 @@ int				helper_main(t_fdf *fdf, t_matrix *m)
 		return (ft_error("Wrong inputs"));
 	fdf->points = m;
 	m_move(m, -(fdf->map->w / 2), 0, -(fdf->map->h / 2));
-	res = create_view(fdf);
-	fdf->draw_points = res;
+	create_view(fdf);
 	print_usage(fdf);
 	draw_all(fdf);
 	all_controls(fdf);
 	mlx_loop(fdf->mlx);
-	free_matrix(res);
 	return (0);
 }
 
 int				main(int argc, char **argv)
 {
 	int			fd;
-	t_fdf		*fdf;
+	t_fdf		fdf;
 	t_matrix	*m;
 
 	fd = 0;
-	fdf = (t_fdf *)malloc(sizeof(t_fdf));
-	init_fdf(fdf);
-	fill_camera(fdf);
+	init_fdf(&fdf);
+	fill_camera(&fdf);
 	if (argc >= 2 && argc < 4)
 	{
 		if ((fd = open(argv[1], O_RDONLY)) == -1)
 			return (ft_error("Could not open file"));
 		if (argc == 3)
 		{
-			m = read_file(fdf, fd);
-			change_colour(fdf, argv[2]);
-			helper_main(fdf, m);
+			m = read_file(&fdf, fd);
+			change_colour(&fdf, argv[2]);
+			helper_main(&fdf, m);
 		}
-		m = read_file(fdf, fd);
-		helper_main(fdf, m);
+		m = read_file(&fdf, fd);
+		helper_main(&fdf, m);
 	}
 	else
 		return (ft_error("No input file"));
-	free_fdf(fdf);
+	free_fdf(&fdf);
 	return (0);
 }

@@ -6,18 +6,18 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/10 13:05:49 by snechaev          #+#    #+#             */
-/*   Updated: 2019/06/27 10:33:46 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/07/01 15:42:38 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_list		*to_list(t_list *list, char *str, int count)
+t_list			*to_list(t_list *list, char *str, int count)
 {
-	t_list	*head;
-	t_list	*current;
-	t_list	*elem;
-	int		n;
+	t_list		*head;
+	t_list		*current;
+	t_list		*elem;
+	int			n;
 
 	n = ft_strlen(str) + 1;
 	str[n - 1] = '\0';
@@ -39,10 +39,10 @@ t_list		*to_list(t_list *list, char *str, int count)
 	return (head);
 }
 
-void		count_size_line(t_list *list, t_size *map)
+void			count_size_line(t_list *list, t_size *map)
 {
-	int		i;
-	char	*str;
+	int			i;
+	char		*str;
 
 	i = 0;
 	map->w = 0;
@@ -68,11 +68,11 @@ void			get_colour(char *str, t_colour *col, int pos)
 
 	tmp = str;
 	col->point_colour[pos] = (char *)malloc(sizeof(char) * 7);
-	if (ft_strchr(tmp,',') == NULL)
+	if (ft_strchr(tmp, ',') == NULL)
 		col->point_colour[pos] = "FFFFFF";
 	else
 	{
-		while(*str != 'x')
+		while (*str != 'x')
 		{
 			str++;
 		}
@@ -84,34 +84,31 @@ void			get_colour(char *str, t_colour *col, int pos)
 void			convert_to_matrix(t_fdf *fdf, t_list *list, t_matrix *net)
 {
 	char		**arr;
-	int			k;
-	int			z;
-	char		*str;
-	int			count;
+	t_help		h;
 	t_list		*t;
 
-	z = 0;
-	count = 0;
+	h.i = 0;
+	h.k = 0;
 	while (list)
 	{
-		str = list->content;
-		arr = ft_strsplit(str, ' ');
-		k = 0;
-		while (k < fdf->map->w)
+		arr = ft_strsplit(list->content, ' ');
+		h.j = 0;
+		while (h.j < fdf->map->w)
 		{
-			ELEM(net, count, 0) = k;
-			ELEM(net, count, 1) = ft_atoi(arr[k]);
-			ELEM(net,count, 2) = z;
-			ELEM(net,count, 3) = 1;
-			get_colour(arr[k], fdf->col, count);
-			k++;
-			count++;
+			ELEM(net, h.k, 0) = h.j;
+			ELEM(net, h.k, 1) = ft_atoi(arr[h.j]);
+			ELEM(net, h.k, 2) = h.i;
+			ELEM(net, h.k, 3) = 1;
+			get_colour(arr[h.j], fdf->col, h.k);
+			h.j++;
+			h.k++;
 		}
-		z++;
+		h.i++;
 		t = list->next;
 		free(list);
 		list = t;
 	}
+	free(list);
 }
 
 t_matrix		*read_file(t_fdf *fdf, const int fd)
@@ -131,7 +128,8 @@ t_matrix		*read_file(t_fdf *fdf, const int fd)
 	count_size_line(list, fdf->map);
 	net = init_matrix((i * fdf->map->w), 4);
 	fdf->map->h = i;
-	fdf->col->point_colour = (char **)malloc(sizeof(char *) * fdf->map->h * fdf->map->w);
+	fdf->col->point_colour = (char **)malloc(sizeof(char *) *
+		fdf->map->h * fdf->map->w);
 	convert_to_matrix(fdf, list, net);
 	return (net);
 }
