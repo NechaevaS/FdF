@@ -47,7 +47,7 @@ int				key_controls(int keycode, t_fdf *fdf)
 	// free(fdf->map);
 	// free(fdf->mlx);
 	//free(fdf->win);
-		while(1);
+	//	while(1);
 		exit(0);
 	}
 	if (keycode == KEY_ARROW_RIGHT || keycode == KEY_ARROW_LEFT ||

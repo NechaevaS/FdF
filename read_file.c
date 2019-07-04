@@ -69,7 +69,7 @@ void			get_colour(char *str, t_colour *col, int pos)
 	tmp = str;
 	col->point_colour[pos] = (char *)malloc(sizeof(char) * 7);
 	if (ft_strchr(tmp, ',') == NULL)
-		col->point_colour[pos] = "FFFFFF";
+		ft_strcpy(col->point_colour[pos], "FFFFFF");
 	else
 	{
 		while (*str != 'x')
@@ -77,7 +77,7 @@ void			get_colour(char *str, t_colour *col, int pos)
 			str++;
 		}
 		str++;
-		col->point_colour[pos] = ft_strncpy(col->point_colour[pos], str, 7);
+		ft_strncpy(col->point_colour[pos], str, 7);
 	}
 }
 
@@ -100,15 +100,16 @@ void			convert_to_matrix(t_fdf *fdf, t_list *list, t_matrix *net)
 			ELEM(net, h.k, 2) = h.i;
 			ELEM(net, h.k, 3) = 1;
 			get_colour(arr[h.j], fdf->col, h.k);
+			free(arr[h.j]);
 			h.j++;
-			h.k++;
+			h.k++;	
 		}
 		h.i++;
 		t = list->next;
 		free(list);
+		free(arr);
 		list = t;
 	}
-	free(list);
 }
 
 t_matrix		*read_file(t_fdf *fdf, const int fd)

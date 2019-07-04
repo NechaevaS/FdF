@@ -57,6 +57,15 @@ void			init_fdf(t_fdf *fdf)
 
 void			free_fdf(t_fdf *fdf)
 {
+	int i;
+
+	i = 0;
+	while(i < fdf->map->w * fdf->map->h)
+	{
+		free(fdf->col->point_colour[i]);
+		i++;
+	}
+	free(fdf->col->point_colour);
 	free(fdf->cam);
 	free(fdf->col);
 	free(fdf->map);

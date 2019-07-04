@@ -26,9 +26,7 @@ OBJS = main.o\
 LIBS = libft/libft.a ./minilibx/libmlx_Linux.a -lX11 -lXext -lm
 #LIBS = MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
 
-CFLAGS = -Wall -Wextra -Werror -g -O0 
-
-#-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g -O0 -fsanitize=address
 
 
 all : $(NAME)

@@ -57,7 +57,7 @@ int				helper_main(t_fdf *fdf, t_matrix *m)
 	print_usage(fdf);
 	draw_all(fdf);
 	all_controls(fdf);
-	mlx_loop(fdf->mlx);
+//	mlx_loop(fdf->mlx);
 	return (0);
 }
 
