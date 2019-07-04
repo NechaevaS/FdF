@@ -92,6 +92,7 @@ void			convert_to_matrix(t_fdf *fdf, t_list *list, t_matrix *net)
 	while (list)
 	{
 		arr = ft_strsplit(list->content, ' ');
+		free(list->content);
 		h.j = 0;
 		while (h.j < fdf->map->w)
 		{
