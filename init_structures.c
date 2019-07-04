@@ -71,10 +71,10 @@ void			free_fdf(t_fdf *fdf)
 	free(fdf->cam);
 	free(fdf->col);
 	free(fdf->map);
-	free(fdf->mlx);
-	free(fdf->win);
 	if (fdf->draw_points)
-		free(fdf->draw_points);
+		free_matrix(fdf->draw_points);
 	if (fdf->points)
-		free(fdf->points);
+		free_matrix(fdf->points);
+	mlx_destroy_window(fdf->mlx, fdf->win);
+	free(fdf->mlx);
 }

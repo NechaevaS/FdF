@@ -53,7 +53,7 @@ void		create_view(t_fdf *fdf)
 	m_iso_project(transform);
 	new_points = mtrx_mltpl(fdf->points, transform);
 	if (fdf->draw_points)
-		free(fdf->draw_points);
+		free_matrix(fdf->draw_points);
 	fdf->draw_points = new_points;
 	free_matrix(transform);
 }
