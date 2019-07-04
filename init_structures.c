@@ -75,4 +75,6 @@ void			free_fdf(t_fdf *fdf)
 	free(fdf->win);
 	if (fdf->draw_points)
 		free(fdf->draw_points);
+	if (fdf->points)
+		free(fdf->points);
 }
