@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 13:40:35 by snechaev          #+#    #+#             */
-/*   Updated: 2019/07/01 16:49:21 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/07/03 18:01:46 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,16 @@ void			control_view(t_fdf *fdf, int keycode)
 
 int				key_controls(int keycode, t_fdf *fdf)
 {
-//	int i = 0;
 	if (keycode == KEY_ESCAPE)
 	{
-		free(fdf->cam);
+		// int	i = 0;
+
 		// while(i < fdf->map->h * fdf->map->w)
 		// {
 		// 	free(fdf->col->point_colour[i]);
 		// 	i++;
 		// }
-	//free(fdf->col->point_colour);
-	// free(fdf->map);
-	// free(fdf->mlx);
-	//free(fdf->win);
+		free_fdf(fdf);
 		while(1);
 		exit(0);
 	}

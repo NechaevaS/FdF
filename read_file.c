@@ -6,11 +6,12 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/10 13:05:49 by snechaev          #+#    #+#             */
-/*   Updated: 2019/07/01 15:42:38 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/07/03 18:04:23 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <string.h>
 
 t_list			*to_list(t_list *list, char *str, int count)
 {
@@ -102,13 +103,15 @@ void			convert_to_matrix(t_fdf *fdf, t_list *list, t_matrix *net)
 			get_colour(arr[h.j], fdf->col, h.k);
 			h.j++;
 			h.k++;
+			free(arr[h.j]);
 		}
 		h.i++;
 		t = list->next;
-		free(list);
+		free(list->content);
+		free(arr);
 		list = t;
 	}
-	free(list);
+	free(t);
 }
 
 t_matrix		*read_file(t_fdf *fdf, const int fd)
@@ -130,6 +133,9 @@ t_matrix		*read_file(t_fdf *fdf, const int fd)
 	fdf->map->h = i;
 	fdf->col->point_colour = (char **)malloc(sizeof(char *) *
 		fdf->map->h * fdf->map->w);
+	//		while (1);
 	convert_to_matrix(fdf, list, net);
+	while (1);
+	free(list);
 	return (net);
 }
