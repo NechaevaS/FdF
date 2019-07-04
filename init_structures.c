@@ -53,6 +53,8 @@ void			init_fdf(t_fdf *fdf)
 	fdf->col->g_f = 0;
 	fdf->col->b_f = 0;
 	fdf->col->point_colour = NULL;
+	fdf->draw_points = NULL;
+	fdf->points = NULL;
 }
 
 void			free_fdf(t_fdf *fdf)
@@ -71,4 +73,6 @@ void			free_fdf(t_fdf *fdf)
 	free(fdf->map);
 	free(fdf->mlx);
 	free(fdf->win);
+	if (fdf->draw_points)
+		free(fdf->draw_points);
 }

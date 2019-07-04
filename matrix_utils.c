@@ -22,7 +22,7 @@ t_matrix		*init_matrix(int row, int col)
 	mtrx->n_row = row;
 	size = sizeof(double) * (mtrx->n_col * mtrx->n_row);
 	mtrx->data = (double *)malloc(size);
-	mtrx->data = ft_memset(mtrx->data, 0, size);
+	ft_memset(mtrx->data, 0, size);
 	return (mtrx);
 }
 
