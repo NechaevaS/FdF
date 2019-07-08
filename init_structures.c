@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 16:05:11 by snechaev          #+#    #+#             */
-/*   Updated: 2019/07/01 14:38:49 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/07/03 17:52:35 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,6 @@ void			fill_camera(t_fdf *fdf)
 	fdf->cam->y = 0;
 }
 
-void in_map(t_size		*map)
-{
-	map->h = 0;
-	map->w = 0;
-}
-
 void			init_fdf(t_fdf *fdf)
 {
 	t_size		*map;
@@ -40,7 +34,6 @@ void			init_fdf(t_fdf *fdf)
 	cam = (t_camera *)ft_memalloc(sizeof(t_camera));
 	map = (t_size *)malloc(sizeof(t_size));
 	col = (t_colour *)malloc(sizeof(t_colour));
-	//in_map(&map);
 	fdf->map = map;
 	fdf->col = col;
 	fdf->cam = cam;
@@ -70,6 +63,7 @@ void			free_fdf(t_fdf *fdf)
 	free(fdf->col->point_colour);
 	free(fdf->cam);
 	free(fdf->col);
+	free(fdf->cam);
 	free(fdf->map);
 	if (fdf->draw_points)
 		free_matrix(fdf->draw_points);
