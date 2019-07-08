@@ -6,7 +6,7 @@
 #    By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/07 14:47:44 by snechaev          #+#    #+#              #
-#    Updated: 2019/06/27 13:34:57 by snechaev         ###   ########.fr        #
+#    Updated: 2019/07/08 11:33:52 by snechaev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ OBJS = main.o\
 MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
 
 CFLAGS = -Wall -Wextra -Werror -g 
+#-fsanitize=address
 
 all : $(NAME)
 

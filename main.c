@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 16:54:28 by snechaev          #+#    #+#             */
-/*   Updated: 2019/07/03 17:58:36 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/07/08 11:24:47 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ int				main(int argc, char **argv)
 	}
 	else
 		return (ft_error("No input file"));
+	free_fdf(&fdf);
 	return (0);
 }

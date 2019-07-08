@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 16:05:11 by snechaev          #+#    #+#             */
-/*   Updated: 2019/07/03 17:52:35 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/07/08 11:36:30 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void			free_fdf(t_fdf *fdf)
 	int i;
 
 	i = 0;
-	while(i < fdf->map->w * fdf->map->h)
+	while(i < (fdf->map->w * fdf->map->h))
 	{
 		free(fdf->col->point_colour[i]);
 		i++;
@@ -63,7 +63,6 @@ void			free_fdf(t_fdf *fdf)
 	free(fdf->col->point_colour);
 	free(fdf->cam);
 	free(fdf->col);
-	free(fdf->cam);
 	free(fdf->map);
 	if (fdf->draw_points)
 		free_matrix(fdf->draw_points);

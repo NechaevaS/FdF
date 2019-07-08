@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/10 13:05:49 by snechaev          #+#    #+#             */
-/*   Updated: 2019/07/03 18:04:23 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/07/08 11:24:25 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,9 +133,6 @@ t_matrix		*read_file(t_fdf *fdf, const int fd)
 	fdf->map->h = i;
 	fdf->col->point_colour = (char **)malloc(sizeof(char *) *
 		fdf->map->h * fdf->map->w);
-	//		while (1);
 	convert_to_matrix(fdf, list, net);
-	while (1);
-	free(list);
 	return (net);
 }
