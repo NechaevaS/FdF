@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 16:54:28 by snechaev          #+#    #+#             */
-/*   Updated: 2019/07/08 11:24:47 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/07/08 11:45:10 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ int				main(int argc, char **argv)
 		}
 		m = read_file(&fdf, fd);
 		helper_main(&fdf, m);
-
 	}
 	else
 		return (ft_error("No input file"));

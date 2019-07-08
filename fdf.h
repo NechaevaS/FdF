@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/10 14:23:09 by snechaev          #+#    #+#             */
-/*   Updated: 2019/07/01 16:57:24 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/07/08 11:45:03 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ typedef struct
 	double		b;
 	double		dx;
 	double		dy;
-
-	
 	int			dir;
 }				t_line;
 

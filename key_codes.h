@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 12:07:39 by snechaev          #+#    #+#             */
-/*   Updated: 2019/07/01 13:27:58 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/07/08 12:49:54 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 
 # define KEY_ARROW_RIGHT	124
 # define KEY_ARROW_LEFT		123
-# define KEY_ARROW_DOWN		125
-# define KEY_ARROW_UP		126
+# define KEY_ARROW_DOWN		126
+# define KEY_ARROW_UP		125
 
 # define KEY_NUM_PLUS		69
 # define KEY_NUM_MINUS		78

@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 16:05:11 by snechaev          #+#    #+#             */
-/*   Updated: 2019/07/08 11:36:30 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/07/08 11:39:41 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void			free_fdf(t_fdf *fdf)
 	int i;
 
 	i = 0;
-	while(i < (fdf->map->w * fdf->map->h))
+	while (i < (fdf->map->w * fdf->map->h))
 	{
 		free(fdf->col->point_colour[i]);
 		i++;

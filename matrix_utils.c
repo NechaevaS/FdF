@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 11:36:49 by snechaev          #+#    #+#             */
-/*   Updated: 2019/07/03 16:47:43 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/07/08 11:44:20 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,3 @@ void			mtrx_mltpl_acc(t_matrix *a, t_matrix *b)
 	a->n_row = tmp->n_row;
 	free(tmp);
 }
-

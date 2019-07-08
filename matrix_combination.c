@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 17:04:31 by snechaev          #+#    #+#             */
-/*   Updated: 2019/07/01 16:58:02 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/07/08 11:40:01 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void			m_iso_project(t_matrix *t)
 	free_matrix(project);
 }
 
-void		create_view(t_fdf *fdf)
+void			create_view(t_fdf *fdf)
 {
 	t_matrix	*transform;
 	t_matrix	*new_points;

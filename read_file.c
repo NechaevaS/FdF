@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/10 13:05:49 by snechaev          #+#    #+#             */
-/*   Updated: 2019/07/08 11:24:25 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/07/08 12:38:43 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,13 @@ void			convert_to_matrix(t_fdf *fdf, t_list *list, t_matrix *net)
 	t_list		*t;
 
 	h.i = 0;
-	h.k = 0;
-	while (list)
+	h.k = -1;
+	while (list && ++h.i)
 	{
 		arr = ft_strsplit(list->content, ' ');
 		free(list->content);
-		h.j = 0;
-		while (h.j < fdf->map->w)
+		h.j = -1;
+		while (++h.j < fdf->map->w && ++h.k >= 0)
 		{
 			ELEM(net, h.k, 0) = h.j;
 			ELEM(net, h.k, 1) = ft_atoi(arr[h.j]);
@@ -103,10 +103,7 @@ void			convert_to_matrix(t_fdf *fdf, t_list *list, t_matrix *net)
 			ELEM(net, h.k, 3) = 1;
 			get_colour(arr[h.j], fdf->col, h.k);
 			free(arr[h.j]);
-			h.j++;
-			h.k++;	
 		}
-		h.i++;
 		t = list->next;
 		free(list);
 		free(arr);

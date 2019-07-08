@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/30 13:36:18 by snechaev          #+#    #+#             */
-/*   Updated: 2019/07/01 11:38:49 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/07/08 12:59:48 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,11 @@ void		change_colour(t_fdf *fdf, char *str)
 	while (i < fdf->map->h * fdf->map->w)
 	{
 		if (strcmp(str, "green") == 0)
-			fdf->col->point_colour[i] = "00FF00";
+			ft_strcpy(fdf->col->point_colour[i], "00FF00");
 		else if (strcmp(str, "red") == 0)
-			fdf->col->point_colour[i] = "FF0000";
+			ft_strcpy(fdf->col->point_colour[i], "FF0000");
 		else if (strcmp(str, "blue") == 0)
-			fdf->col->point_colour[i] = "0000FF";
+			ft_strcpy(fdf->col->point_colour[i], "0000FF");
 		else
 		{
 			ft_error("Please choose one : red, green, blue");

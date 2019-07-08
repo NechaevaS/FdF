@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 14:10:25 by snechaev          #+#    #+#             */
-/*   Updated: 2019/07/01 16:19:26 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/07/08 12:50:30 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void			zoom_add(t_fdf *fdf, int inc)
 
 void			control_move(t_fdf *fdf, int keycode)
 {
-	if (keycode == 126)
-		fdf->cam->y += 10;
-	else if (keycode == KEY_ARROW_DOWN)
+	if (keycode == KEY_ARROW_DOWN)
 		fdf->cam->y -= 10;
+	else if (keycode == KEY_ARROW_UP)
+		fdf->cam->y += 10;
 	else if (keycode == KEY_ARROW_RIGHT)
 		fdf->cam->x += 10;
 	else if (keycode == KEY_ARROW_LEFT)
