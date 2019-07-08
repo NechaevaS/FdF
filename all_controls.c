@@ -43,8 +43,11 @@ int				key_controls(int keycode, t_fdf *fdf)
 		// 	free(fdf->col->point_colour[i]);
 		// 	i++;
 		// }
-		free_fdf(fdf);
-		while(1);
+	//free(fdf->col->point_colour);
+	// free(fdf->map);
+	// free(fdf->mlx);
+	//free(fdf->win);
+	//	while(1);
 		exit(0);
 	}
 	if (keycode == KEY_ARROW_RIGHT || keycode == KEY_ARROW_LEFT ||

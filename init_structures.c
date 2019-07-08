@@ -45,22 +45,30 @@ void			init_fdf(t_fdf *fdf)
 	fdf->col->r_f = 0;
 	fdf->col->g_f = 0;
 	fdf->col->b_f = 0;
+	fdf->col->point_colour = NULL;
+	fdf->draw_points = NULL;
+	fdf->points = NULL;
 }
 
 void			free_fdf(t_fdf *fdf)
 {
-	// int			i;
+	int i;
 
-	// i = 0;
-	// while(i < fdf->map->h * fdf->map->w)
-	// 	{
-	// 		free(fdf->col->point_colour[i]);
-	// 		i++;
-	// 	}
+	i = 0;
+	while(i < fdf->map->w * fdf->map->h)
+	{
+		free(fdf->col->point_colour[i]);
+		i++;
+	}
 	free(fdf->col->point_colour);
+	free(fdf->cam);
 	free(fdf->col);
 	free(fdf->cam);
 	free(fdf->map);
-	free_matrix(fdf->points);
-	free_matrix(fdf->draw_points);
+	if (fdf->draw_points)
+		free_matrix(fdf->draw_points);
+	if (fdf->points)
+		free_matrix(fdf->points);
+	mlx_destroy_window(fdf->mlx, fdf->win);
+	free(fdf->mlx);
 }

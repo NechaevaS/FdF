@@ -52,7 +52,8 @@ void		create_view(t_fdf *fdf)
 		(fdf->cam->y + (WIN_H / 2) - (fdf->map->h / 2)), 0);
 	m_iso_project(transform);
 	new_points = mtrx_mltpl(fdf->points, transform);
+	if (fdf->draw_points)
+		free_matrix(fdf->draw_points);
 	fdf->draw_points = new_points;
 	free_matrix(transform);
-//	free_matrix(new_points);
 }
