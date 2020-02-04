@@ -1,5 +1,8 @@
 **FDF**\
-![GitHub Screen_Shot](/Screen_Shot.png)
+Example of input\
+![GitHub Screen_Shot](screen_shots/example_input.png)\
+Appropriate output\
+![GitHub Screen_Shot](screen_shots/example_output.png)\
 This is a simple 3D rendering of a height map.\
 To create were used MiniLibX (library of a simple graphical interface) and matrix multiplication.
   
