@@ -1,5 +1,5 @@
 **FDF**\
-Example of input\
+Example of input
 ![GitHub Screen_Shot](screen_shots/example_input.png)\
 Appropriate output\
 ![GitHub Screen_Shot](screen_shots/example_output.png)\
