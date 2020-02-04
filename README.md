@@ -10,6 +10,7 @@ To create were used MiniLibX (library of a simple graphical interface) and matri
 Simple file format definition (array of space-separated integers).\
 Easy 3D manipulations(zoom, move, rotations, change the height by keys and mouse)\
 Camera controls (zoom, translate).\
+Reading colors from the map.\
 Pretty color gradients depend on height.
 
 **Compiling and running:**\
