@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 16:54:28 by snechaev          #+#    #+#             */
-/*   Updated: 2019/07/08 11:45:10 by snechaev         ###   ########.fr       */
+/*   Updated: 2020/02/03 16:17:18 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void			print_usage(t_fdf *fdf)
 	mlx_string_put(fdf->mlx, fdf->win, 10, 125, 0xFFFFFF,
 		"up/down - NUM KEYkey 2/8");
 	mlx_string_put(fdf->mlx, fdf->win, 10, 155, 0xFFFFFF,
-		"right/left - NUM key 2/8");
+		"right/left - NUM key 4/6");
 	mlx_string_put(fdf->mlx, fdf->win, 10, 185, 0x00FF00, "Zoom:");
 	mlx_string_put(fdf->mlx, fdf->win, 10, 215, 0xFFFFFF,
 		"Scroll or NUM key +/-");
